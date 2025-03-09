@@ -26,18 +26,18 @@ public class BasicEnemyAI : MonoBehaviour,  IDamage
 
 
 
-
+    public float currentSpeed;
     public bool PlayerInSight;
     float AngleToPlayer;
     Vector3 PlayerDrr;
 
-
+    
     public GameObject Target;
    protected bool CanAttack;
     // Start is called before the first frame update
   public virtual void Start()
     {
-        PlayerInSight = false;
+        PlayerInSight = true;
         CanAttack = true;
     }
 
@@ -53,8 +53,12 @@ public class BasicEnemyAI : MonoBehaviour,  IDamage
             Die();
         }
 
-      //  CanSeePlayer();
+        //  CanSeePlayer();
 
+
+       currentSpeed =  EnemyNav.velocity.magnitude;
+
+        controler.SetFloat("Speed", currentSpeed);
     }
 
 
