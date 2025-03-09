@@ -6,26 +6,37 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] public CharacterController cController;
     [SerializeField] public Transform Cam;
+    [SerializeField] public Animator anim;
 
     [SerializeField] float currentSpeed = 3.0f;
     [SerializeField] float turnDampTime = 0.1f;
+    [SerializeField] float gravity = -9.81f;
+
+    [SerializeField] float jumpHeight = 1.5f;
+
+
     float turnSmoothVelocity;
+    float verticalVelocity;
 
     //float horizontalInput;
     //float verticalInput;
-    Vector3 direction;
+
+    //bools
+    bool isGrounded;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         cController = GetComponent<CharacterController>();
-
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Movement();
+        jump();
     }
 
     void Movement()
@@ -33,9 +44,13 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        direction = new Vector3(horizontalInput, 0f, verticalInput).normalized;
+        Vector3 direction = new Vector3(horizontalInput, 0f, verticalInput).normalized;
+        float speed = direction.magnitude * currentSpeed;
+        float animSpeed = anim.GetFloat("Speed");
+        float smoothSpeed = Mathf.Lerp(animSpeed, speed, Time.deltaTime * 10f);
+        anim.SetFloat("Speed", smoothSpeed);
 
-        if(direction.magnitude >= 0.1f)
+        if (direction.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnDampTime);
@@ -43,8 +58,29 @@ public class PlayerController : MonoBehaviour
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             cController.Move(moveDir * currentSpeed * Time.deltaTime);
-        }    
+ 
+        }
         
+        
+    }
+
+    void jump()
+    {
+        isGrounded = cController.isGrounded;
+        if(isGrounded && verticalVelocity < 0)
+        {
+            verticalVelocity = -2f;
+        }
+
+        verticalVelocity += gravity * Time.deltaTime;
+        Vector3 gravityMove = new Vector3(0, verticalVelocity, 0);
+        cController.Move(gravityMove * Time.deltaTime);
+
+        if(isGrounded && Input.GetButtonDown("Jump"))
+        {
+
+        }
+
     }
 
 }
