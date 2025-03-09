@@ -69,9 +69,10 @@ public class Projectile : MonoBehaviour
         }
 
         // Find the TargetTransform object and initialize playerTransform
-        TargetTransform = target.gameObject;
-        if (TargetTransform != null)
+      
+        if (target != null)
         {
+            TargetTransform = target.gameObject;
             playerTransform = TargetTransform.transform;
             StartCoroutine(FollowPlayer(followtime));
         }

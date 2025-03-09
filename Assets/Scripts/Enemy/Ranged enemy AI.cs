@@ -45,12 +45,16 @@ public class RangedEnemyAI : BasicEnemyAI, IDamage
     {
         base.Update();
 
+        
 
 
         if (CheckPlayerDistance() && canAttack && PlayerInSight)
         {
             canAttack = false;
-            CastBaseAttack();
+
+
+            controler.SetTrigger("Attack");
+           
 
         }
 
@@ -84,9 +88,13 @@ public class RangedEnemyAI : BasicEnemyAI, IDamage
         }
 
 
-        StartCoroutine(AttackCooldown());
+        
     }
 
+   public void ResetAttack()
+    {
+        canAttack = true;
+    }
 
     IEnumerator AttackCooldown()
     {
