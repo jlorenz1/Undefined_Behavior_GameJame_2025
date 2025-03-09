@@ -12,8 +12,8 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<PlayerController>();
-        PlayerHealthBar.fillAmount = player.currHealth / 100.0f;
+    
+        PlayerHealthBar.fillAmount = GameManager.gameInstance.playerControl.currHealth / 100.0f;
     }
 
     // Update is called once per frame
@@ -24,6 +24,6 @@ public class UIManager : MonoBehaviour
 
     void UpdatePlayerHealth()
     {
-        PlayerHealthBar.fillAmount = player.currHealth / 100.0f;
+        PlayerHealthBar.fillAmount = GameManager.gameInstance.playerControl.currHealth / 100.0f;
     }
 }

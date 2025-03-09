@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-   public GameObject player;
+    public GameObject player;
+    public PlayerController playerControl;
 
     public GameObject Amy;
     public GameObject Yam;
@@ -21,8 +22,12 @@ public class GameManager : MonoBehaviour
         {
             if (_gameInstance == null)
             {
+                _gameInstance = FindObjectOfType<GameManager>();
+                if (_gameInstance == null)
+                {
 
-
+                    Debug.LogError("GameManager instance is missing!");
+                }
             }
             return _gameInstance;
         }
@@ -31,9 +36,17 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-       
+        if (_gameInstance == null)
+        {
+            _gameInstance = this;
+        }
+        else if (_gameInstance != this)
+        {
+            Destroy(gameObject);
+        }
+
         player = GameObject.FindWithTag("Player");
-       
+        playerControl = player.GetComponent<PlayerController>();
     }
 
 
