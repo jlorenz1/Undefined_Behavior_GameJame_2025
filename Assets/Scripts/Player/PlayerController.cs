@@ -16,7 +16,8 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] Transform groundCheck;
     [SerializeField] public LayerMask groundMask;
 
-    [SerializeField] float currentSpeed = 3.0f;
+    [SerializeField] float currentSpeed;
+    [SerializeField] float walkSpeed = 3.0f;
     [SerializeField] float turnDampTime = 0.1f;
     [SerializeField] float gravity = -9.81f;
 
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour, IDamage
         anim = GetComponentInChildren<Animator>();
 
         currHealth = maxHealth;
+        currentSpeed = walkSpeed;
     }
 
     // Update is called once per frame
@@ -108,7 +110,6 @@ public class PlayerController : MonoBehaviour, IDamage
         if(Input.GetMouseButtonDown(0))
         {
             StartCoroutine(performAttack());
-            
         }
 
     }
@@ -120,7 +121,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
 
-        anim.SetTrigger("Attack");
+        anim.SetTrigger("Move");
         currentSpeed = 3.0f;
     }
 

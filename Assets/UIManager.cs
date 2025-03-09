@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] public Image PlayerHealthBar;
+    [SerializeField] public Image amyIcon;
+    [SerializeField] public Image yamIcon;
 
     private PlayerController player;
     

@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player;
     public PlayerController playerControl;
+    public UIManager UI;
 
     public GameObject Amy;
     public GameObject Yam;
@@ -47,6 +48,9 @@ public class GameManager : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
         playerControl = player.GetComponent<PlayerController>();
+
+        UI = FindAnyObjectByType<UIManager>();
+
     }
 
 
@@ -63,12 +67,18 @@ public class GameManager : MonoBehaviour
         {
             if(isAmyActive == true)
             {
+                UI.amyIcon.gameObject.SetActive(true);
+                UI.yamIcon.gameObject.SetActive(false);
+                UI.PlayerHealthBar.gameObject.SetActive(true);
                 isAmyActive = false;
                 Amy.SetActive(false);
                 Yam.SetActive(true);
             }
             else if(isAmyActive == false)
             {
+                UI.yamIcon.gameObject.SetActive(true);
+                UI.amyIcon.gameObject.SetActive(false);
+                UI.PlayerHealthBar.gameObject.SetActive(false);
                 isAmyActive = true;
                 Yam.SetActive(false);
                 Amy.SetActive(true);
