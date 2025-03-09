@@ -107,21 +107,21 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         if(Input.GetMouseButtonDown(0))
         {
-            //StartCoroutine(performAttack());
-            anim.SetTrigger("Attack");
+            StartCoroutine(performAttack());
+            
         }
 
     }
 
     IEnumerator performAttack()
     {
-        isAttacking = true;
-        anim.SetBool("Attack", true);
+        currentSpeed = 0.0f;
+        anim.SetTrigger("Attack");
 
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
 
-        anim.SetBool("Attack", false);
-        isAttacking = false;
+        anim.SetTrigger("Attack");
+        currentSpeed = 3.0f;
     }
 
     public void TakeDamage(float amount)
