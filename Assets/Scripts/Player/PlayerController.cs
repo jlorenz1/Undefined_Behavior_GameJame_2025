@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public Transform Cam;
     [SerializeField] public Animator anim;
 
+    [SerializeField] Transform groundCheck;
+    [SerializeField] public LayerMask groundMask;
+
     [SerializeField] float currentSpeed = 3.0f;
     [SerializeField] float turnDampTime = 0.1f;
     [SerializeField] float gravity = -9.81f;
@@ -35,6 +38,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isGrounded = Physics.CheckSphere(groundCheck.position, 0.2f, groundMask);
         Movement();
         jump();
     }
@@ -66,20 +70,28 @@ public class PlayerController : MonoBehaviour
 
     void jump()
     {
-        isGrounded = cController.isGrounded;
         if(isGrounded && verticalVelocity < 0)
         {
             verticalVelocity = -2f;
+           
+            anim.SetBool("Jump", false);
+        }
+
+        if(isGrounded && Input.GetButtonDown("Jump"))
+        {
+            anim.SetBool("Jump", true);
+            verticalVelocity = Mathf.Sqrt(jumpHeight * -2 * gravity);
+        }
+
+        if (!isGrounded && verticalVelocity < 0)
+        {
+           
+            anim.SetBool("Jump", false);
         }
 
         verticalVelocity += gravity * Time.deltaTime;
         Vector3 gravityMove = new Vector3(0, verticalVelocity, 0);
         cController.Move(gravityMove * Time.deltaTime);
-
-        if(isGrounded && Input.GetButtonDown("Jump"))
-        {
-
-        }
 
     }
 
