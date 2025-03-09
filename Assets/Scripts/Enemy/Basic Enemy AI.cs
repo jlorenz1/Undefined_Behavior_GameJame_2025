@@ -35,15 +35,18 @@ public class BasicEnemyAI : MonoBehaviour,  IDamage
     public GameObject Target;
    public bool CanAttack;
     // Start is called before the first frame update
-  public virtual void Start()
+
+
+    public void Awake()
     {
-        if(GameManager.gameInstance != null)
-        {
-            Target = GameManager.gameInstance.player;
-        }
+       
+    }
 
-        
 
+    public virtual void Start()
+    {
+
+        Target = GameManager.gameInstance.player;
 
         PlayerInSight = true;
         CanAttack = true;
