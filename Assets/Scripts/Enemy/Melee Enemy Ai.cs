@@ -8,7 +8,7 @@ public class MeleeEnemyAi : BasicEnemyAI
     public override void Start()
     {
         base.Start();
-        
+        CanAttack = true;
     }
 
 
@@ -17,7 +17,7 @@ public class MeleeEnemyAi : BasicEnemyAI
         base.Update();
 
 
-
+        EnemyNav.stoppingDistance = AttackRange;
 
         if (CheckPlayerDistance() && CanAttack && PlayerInSight)
         {
@@ -26,7 +26,7 @@ public class MeleeEnemyAi : BasicEnemyAI
 
             controler.SetTrigger("Attack");
 
-
+            Debug.Log("attack called");
         }
 
         // EnemyNav.stoppingDistance = AttackRange / 2;

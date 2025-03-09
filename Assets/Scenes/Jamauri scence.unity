@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9ad8fa6fcd4de134ab237289fba91e0d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -556.4779
+      value: -566.41
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9ad8fa6fcd4de134ab237289fba91e0d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2145,14 +2145,14 @@ MonoBehaviour:
   MaxHealth: 0
   CurrentArmor: 0
   MaxArmor: 0
-  AttackRange: 0
-  HeadPos: {fileID: 0}
+  AttackRange: 4
+  HeadPos: {fileID: 5901452235482545299}
   ViewAngle: 0
   sight: 25
   AutoDetectRange: 0
   level: 0
   currentSpeed: 0
-  PlayerInSight: 0
+  PlayerInSight: 1
   Target: {fileID: 1831567220}
 --- !u!4 &5901452235482545299
 Transform:
