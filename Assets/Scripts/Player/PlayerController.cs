@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     //bools
     bool isGrounded;
-    
+    bool isAttacking;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +40,8 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.2f, groundMask);
         Movement();
-        jump();
+        Jump();
+        Attack();
     }
 
     void Movement()
@@ -62,22 +63,22 @@ public class PlayerController : MonoBehaviour
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             cController.Move(moveDir * currentSpeed * Time.deltaTime);
- 
+
         }
-        
-        
+
+       
     }
 
-    void jump()
+    void Jump()
     {
-        if(isGrounded && verticalVelocity < 0)
+        if (isGrounded && verticalVelocity < 0)
         {
             verticalVelocity = -2f;
-           
+
             anim.SetBool("Jump", false);
         }
 
-        if(isGrounded && Input.GetButtonDown("Jump"))
+        if (isGrounded && Input.GetButtonDown("Jump"))
         {
             anim.SetBool("Jump", true);
             verticalVelocity = Mathf.Sqrt(jumpHeight * -2 * gravity);
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviour
 
         if (!isGrounded && verticalVelocity < 0)
         {
-           
+
             anim.SetBool("Jump", false);
         }
 
@@ -95,4 +96,24 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    void Attack()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            //StartCoroutine(performAttack());
+            anim.SetTrigger("Attack");
+        }
+
+    }
+
+    IEnumerator performAttack()
+    {
+        isAttacking = true;
+        anim.SetBool("Attack", true);
+
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+
+        anim.SetBool("Attack", false);
+        isAttacking = false;
+    }
 }
