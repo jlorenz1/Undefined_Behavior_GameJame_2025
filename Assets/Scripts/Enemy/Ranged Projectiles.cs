@@ -51,8 +51,7 @@ public class Projectile : MonoBehaviour
     {
         followTarget = true;
         int projectileLayer = gameObject.layer;
-        int EnemyLayer = LayerMask.NameToLayer("Enemy");
-        Physics.IgnoreLayerCollision(projectileLayer, EnemyLayer);
+       
     
     
 
@@ -118,6 +117,7 @@ public class Projectile : MonoBehaviour
         {
             ProjectileAudio.Stop();
         }
+        Debug.Log("obj destroyed");
     }
 
     void OnTriggerEnter(Collider other)

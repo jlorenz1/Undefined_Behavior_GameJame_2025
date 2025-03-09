@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,6 +38,7 @@ public class BasicEnemyAI : MonoBehaviour,  IDamage
   public virtual void Start()
     {
         PlayerInSight = false;
+        CanAttack = true;
     }
 
     // Update is called once per frame
@@ -51,7 +53,7 @@ public class BasicEnemyAI : MonoBehaviour,  IDamage
             Die();
         }
 
-        CanSeePlayer();
+      //  CanSeePlayer();
 
     }
 
