@@ -34,6 +34,7 @@ public class BasicEnemyAI : MonoBehaviour,  IDamage
     
     public GameObject Target;
    public bool CanAttack;
+    public GameObject ph;
     // Start is called before the first frame update
 
 
@@ -45,9 +46,10 @@ public class BasicEnemyAI : MonoBehaviour,  IDamage
 
     public virtual void Start()
     {
-
-        Target = GameManager.gameInstance.player;
-
+        if (GameManager.gameInstance != null)
+        {
+            ph = GameManager.gameInstance.player;
+        }
         PlayerInSight = true;
         CanAttack = true;
     }
