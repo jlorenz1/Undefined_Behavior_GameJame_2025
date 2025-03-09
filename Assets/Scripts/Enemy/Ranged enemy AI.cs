@@ -19,7 +19,7 @@ public class RangedEnemyAI : BasicEnemyAI, IDamage
 
     float castDelay = 1;
     [SerializeField] float castRange;
-    bool canAttack;
+   
 
 
 
@@ -35,7 +35,7 @@ public class RangedEnemyAI : BasicEnemyAI, IDamage
     {
         base.Start();
         EnemyNav.stoppingDistance = castRange / 2;
-        canAttack = true;
+        
 
 
     }
@@ -48,9 +48,9 @@ public class RangedEnemyAI : BasicEnemyAI, IDamage
         
 
 
-        if (CheckPlayerDistance() && canAttack && PlayerInSight)
+        if (CheckPlayerDistance() && CanAttack && PlayerInSight)
         {
-            canAttack = false;
+            CanAttack = false;
 
 
             controler.SetTrigger("Attack");
@@ -89,23 +89,6 @@ public class RangedEnemyAI : BasicEnemyAI, IDamage
 
 
         
-    }
-
-   public void ResetAttack()
-    {
-        canAttack = true;
-    }
-
-    IEnumerator AttackCooldown()
-    {
-        yield return new WaitForSeconds(fireRate);
-        canAttack = true;
-    }
-
-
-    public void EnableAttack()
-    {
-        canAttack = true;
     }
 
 

@@ -142,4 +142,9 @@ public class BasicEnemyAI : MonoBehaviour,  IDamage
     {
         EnemyNav.speed /= amount;
     }
+
+    public void ResetAttack()
+    {
+        CanAttack = true;
+    }
 }
