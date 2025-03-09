@@ -8,7 +8,7 @@ public class RangedEnemyAI : BasicEnemyAI, IDamage
 
 
 
-    public GameObject projectilePrefab;
+   
     public float fireRate = 1f;
     private float nextFireTime = 0f;
 

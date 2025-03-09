@@ -73,9 +73,10 @@ public class Projectile : MonoBehaviour
         if (TargetTransform != null)
         {
             playerTransform = TargetTransform.transform;
+            StartCoroutine(FollowPlayer(followtime));
         }
 
-        StartCoroutine(FollowPlayer(followtime));
+      
 
     }
     void Update()
