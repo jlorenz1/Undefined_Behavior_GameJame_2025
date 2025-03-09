@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamage
 {
+    [Header("PLAYER GAME VARIABLES")]
+    [SerializeField] public float maxHealth = 100f;
+    [SerializeField] public float currHealth;
+
+    [Header("PLAYER COMPONENTS")]
     [SerializeField] public CharacterController cController;
     [SerializeField] public Transform Cam;
     [SerializeField] public Animator anim;
@@ -33,6 +38,8 @@ public class PlayerController : MonoBehaviour
     {
         cController = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
+
+        currHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -115,5 +122,15 @@ public class PlayerController : MonoBehaviour
 
         anim.SetBool("Attack", false);
         isAttacking = false;
+    }
+
+    public void TakeDamage(float amount)
+    {
+        currHealth -= amount;
+
+        if(currHealth >= 0)
+        {
+            //GAME OVER
+        }
     }
 }
