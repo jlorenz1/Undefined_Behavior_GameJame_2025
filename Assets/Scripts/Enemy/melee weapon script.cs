@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class meleeweaponscript : MonoBehaviour
 {
-    IDamage TargetDamage;
+    public IDamage TargetDamage;
 
   
 

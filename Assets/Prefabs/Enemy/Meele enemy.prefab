@@ -2686,8 +2686,8 @@ GameObject:
   - component: {fileID: 2682176027264227478}
   - component: {fileID: 492115950962737161}
   - component: {fileID: 8080369592153303151}
-  - component: {fileID: 4475708741705127649}
   - component: {fileID: 5355217904079072890}
+  - component: {fileID: 6136578477140226824}
   m_Layer: 0
   m_Name: Meele enemy
   m_TagString: Enemy
@@ -2781,6 +2781,7 @@ MonoBehaviour:
   ViewAngle: 0
   sight: 25
   AutoDetectRange: 0
+  ActivateDistances: 0
   level: 0
   Spawm: {fileID: 0}
   currentSpeed: 0
@@ -2789,28 +2790,6 @@ MonoBehaviour:
   CanAttack: 0
   ph: {fileID: 0}
   MeleeWeapon: {fileID: 1410672229794994749}
---- !u!64 &4475708741705127649
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7717687260233389494}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!65 &5355217904079072890
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2827,11 +2806,38 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1.5, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!54 &6136578477140226824
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7717687260233389494}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &7843573964115301789
 GameObject:
   m_ObjectHideFlags: 0

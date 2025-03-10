@@ -20,7 +20,7 @@ public class BasicEnemyAI : MonoBehaviour,  IDamage
     [SerializeField] protected int ViewAngle;
     [SerializeField] protected float sight = 25;
     [SerializeField] float AutoDetectRange;
-
+    [SerializeField] float ActivateDistances = 15;
 
     [SerializeField] protected int level;
 
@@ -48,7 +48,7 @@ public class BasicEnemyAI : MonoBehaviour,  IDamage
     {
         if (GameManager.gameInstance != null)
         {
-            ph = GameManager.gameInstance.player;
+            Target = GameManager.gameInstance.Yam;
         }
         PlayerInSight = true;
         CanAttack = true;
@@ -59,12 +59,16 @@ public class BasicEnemyAI : MonoBehaviour,  IDamage
     {
         if (Target != null && this != null)
         {
-            EnemyNav.SetDestination(Target.transform.position);
-            AutoDetect();
+            if (ActivateDistance())
+            {
+                EnemyNav.SetDestination(Target.transform.position);
+            }
         }
         else
-            if (this != null)
+            if (this != null && Target == null)
+        {
             EnemyNav.ResetPath();
+        }
 
         if (CurrentHealth <= 0)
         {
@@ -77,6 +81,9 @@ public class BasicEnemyAI : MonoBehaviour,  IDamage
        currentSpeed =  EnemyNav.velocity.magnitude;
 
         controler.SetFloat("Speed", currentSpeed);
+
+        FacePlayer();
+        
     }
 
 
@@ -88,6 +95,7 @@ public class BasicEnemyAI : MonoBehaviour,  IDamage
 
    protected virtual void Die()
     {
+        GameManager.gameInstance.KillCount++;
         Destroy(gameObject);
     }
 
@@ -100,6 +108,17 @@ public class BasicEnemyAI : MonoBehaviour,  IDamage
 
             return distance <= AttackRange; // Change 10f to your desired detection range
      
+    }
+
+    protected bool ActivateDistance()
+    {
+        if (Target == null) return false;
+
+        float distance = Vector3.Distance(transform.position, Target.transform.position);
+
+        return distance <= ActivateDistances;
+
+
     }
 
 

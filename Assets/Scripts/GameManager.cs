@@ -13,6 +13,14 @@ public class GameManager : MonoBehaviour
     public GameObject Yam;
     public bool isAmyActive;
 
+    public int KillCount;
+
+   public doorScript Door1;
+    public doorScript Door2;
+
+    bool D1Delay;
+
+
     // Private static instance to the gameManager
     private static GameManager _gameInstance;
 
@@ -47,7 +55,7 @@ public class GameManager : MonoBehaviour
         }
 
         player = GameObject.FindWithTag("Player");
-        playerControl = player.GetComponent<PlayerController>();
+      
 
         UI = FindAnyObjectByType<UIManager>();
 
@@ -57,6 +65,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        D1Delay = false;
         isAmyActive = true;
     }
 
@@ -83,6 +92,27 @@ public class GameManager : MonoBehaviour
                 Yam.SetActive(false);
                 Amy.SetActive(true);
             }
+        }
+
+
+
+        if (D1Delay == false)
+        {
+            if (KillCount == 5 && Door1 != null)
+            {
+                D1Delay = true;
+                Door1.slide();
+                D1Delay = false;
+            }
+
+
+            if (KillCount == 14 && Door2 != null)
+            {
+                D1Delay = true;
+                Door2.slide();
+                D1Delay = false;
+            }
+
         }
     }
 

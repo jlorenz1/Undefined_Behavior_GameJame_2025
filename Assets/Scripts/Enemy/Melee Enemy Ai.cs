@@ -26,7 +26,7 @@ public class MeleeEnemyAi : BasicEnemyAI
 
         EnemyNav.stoppingDistance = AttackRange;
 
-        if (CheckPlayerDistance() && CanAttack && PlayerInSight)
+        if (CheckPlayerDistance() && CanAttack)
         {
             CanAttack = false;
 
@@ -37,7 +37,7 @@ public class MeleeEnemyAi : BasicEnemyAI
         }
 
         // EnemyNav.stoppingDistance = AttackRange / 2;
-        EnemyNav.SetDestination(Target.transform.position);
+       
 
 
 

@@ -48,7 +48,7 @@ public class RangedEnemyAI : BasicEnemyAI
         
 
 
-        if (CheckPlayerDistance() && CanAttack && PlayerInSight)
+        if (CheckPlayerDistance() && CanAttack)
         {
             CanAttack = false;
 

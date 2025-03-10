@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     IEnumerator performAttack()
     {
-        weaponCollider.enabled = true;
+       weaponCollider.enabled = true;
         currentSpeed = 0.0f;
         anim.SetTrigger("Attack");
 

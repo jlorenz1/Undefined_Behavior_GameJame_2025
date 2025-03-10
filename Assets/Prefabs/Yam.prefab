@@ -841,6 +841,7 @@ GameObject:
   - component: {fileID: 1448780198044421284}
   - component: {fileID: 4962898793099568844}
   - component: {fileID: 3346938900049900980}
+  - component: {fileID: 9009882823500085330}
   m_Layer: 0
   m_Name: TESTSWORD
   m_TagString: Untagged
@@ -857,7 +858,7 @@ Transform:
   m_GameObject: {fileID: 2548417829519173773}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.31, y: 0.0818, z: 0.018}
+  m_LocalPosition: {x: -0.583, y: 0.052, z: 0.015}
   m_LocalScale: {x: 0.74662, y: 0.03205512, z: 0.017910656}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -928,12 +929,25 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9009882823500085330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2548417829519173773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7288103f8abc4b4992858680b0ec461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 25
 --- !u!1 &2665947598304561612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1411,7 +1425,7 @@ GameObject:
   - component: {fileID: 3729177760307918779}
   m_Layer: 0
   m_Name: Yam
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1498,6 +1512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   currHealth: 0
+  Weapon: {fileID: 2548417829519173773}
   cController: {fileID: 0}
   Cam: {fileID: 7818814314614185600}
   anim: {fileID: 0}
@@ -1506,6 +1521,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   currentSpeed: 3
+  walkSpeed: 3
   turnDampTime: 0.1
   gravity: -9.81
   jumpHeight: 1
@@ -2252,7 +2268,7 @@ GameObject:
   - component: {fileID: 2815604945040644096}
   m_Layer: 0
   m_Name: AmyDefault
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2603,7 +2619,7 @@ Transform:
   m_GameObject: {fileID: 7214048432304092378}
   serializedVersion: 2
   m_LocalRotation: {x: 0.1738628, y: 0.000000014192084, z: -0.0000000025056364, w: 0.9847699}
-  m_LocalPosition: {x: 16.95697, y: 1.8200073, z: -4.4799805}
+  m_LocalPosition: {x: 0, y: 1.8200073, z: -4.4799805}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
