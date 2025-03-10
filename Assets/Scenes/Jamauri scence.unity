@@ -368,14 +368,14 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 4
+  m_Height: 3
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!23 &534761799
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -436,7 +436,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.0069583654, y: -0.1244104, z: -0.5036476, w: -0.85487586}
   m_LocalPosition: {x: -0.020209014, y: 0.075866304, z: 0.04970997}
-  m_LocalScale: {x: 0.05, y: 0.049999997, z: 0.049999997}
+  m_LocalScale: {x: 0.05, y: 0.25, z: 0.049999997}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1842546750}
@@ -462,6 +462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   Damage: 20
+  Weaponcollider: {fileID: 0}
 --- !u!1001 &557594135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -952,6 +953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1310579701}
   playerControl: {fileID: 0}
+  UI: {fileID: 0}
   Amy: {fileID: 1310579701}
   Yam: {fileID: 3033170657773906478}
   isAmyActive: 1
@@ -1202,6 +1204,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1214816949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1486133640513255404, guid: 525284aac2d3a294697de2a95581c868, type: 3}
+  m_PrefabInstance: {fileID: 9185511318574853483}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1310579701 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3033170657590161903, guid: 970ebc17a5d826f4db67425fb88bc574, type: 3}
@@ -2994,8 +3001,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5457540518347164772, guid: 50137a5f158a94b49b0f7d8d1e865b4d, type: 3}
   m_PrefabInstance: {fileID: 6126819255928486923}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &5460335067048851349
-MeshCollider:
+--- !u!136 &5460335067048851354
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3010,12 +3017,13 @@ MeshCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!4 &5465940246733803140
 Transform:
   m_ObjectHideFlags: 0
@@ -3156,7 +3164,7 @@ MonoBehaviour:
   MaxHealth: 0
   CurrentArmor: 0
   MaxArmor: 0
-  AttackRange: 4
+  AttackRange: 1.25
   HeadPos: {fileID: 5901452235482545299}
   ViewAngle: 0
   sight: 25
@@ -3165,9 +3173,10 @@ MonoBehaviour:
   Spawm: {fileID: 0}
   currentSpeed: 0
   PlayerInSight: 1
-  Target: {fileID: 1310579701}
+  Target: {fileID: 5460335067048851345}
   CanAttack: 0
   ph: {fileID: 0}
+  MeleeWeapon: {fileID: 534761797}
 --- !u!64 &5866666021655934060
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3289,7 +3298,7 @@ PrefabInstance:
     - target: {fileID: 1198414696476434637, guid: 50137a5f158a94b49b0f7d8d1e865b4d, type: 3}
       propertyPath: Target
       value: 
-      objectReference: {fileID: 919132149413213354}
+      objectReference: {fileID: 1214816949}
     - target: {fileID: 4947792202611747313, guid: 50137a5f158a94b49b0f7d8d1e865b4d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 802.36
@@ -3344,7 +3353,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5457540518347164772, guid: 50137a5f158a94b49b0f7d8d1e865b4d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5460335067048851349}
+      addedObject: {fileID: 5460335067048851354}
   m_SourcePrefab: {fileID: 100100000, guid: 50137a5f158a94b49b0f7d8d1e865b4d, type: 3}
 --- !u!1 &6136935971174251888
 GameObject:
@@ -3945,9 +3954,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1295768176865490444, guid: e3ca7bcef641c4e42b6901fe0f0f9a15, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.98144424
+      objectReference: {fileID: 0}
+    - target: {fileID: 1295768176865490444, guid: e3ca7bcef641c4e42b6901fe0f0f9a15, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.19174795
+      objectReference: {fileID: 0}
     - target: {fileID: 3887348722264743999, guid: e3ca7bcef641c4e42b6901fe0f0f9a15, type: 3}
       propertyPath: m_Name
       value: Yam
+      objectReference: {fileID: 0}
+    - target: {fileID: 6023571959288864641, guid: e3ca7bcef641c4e42b6901fe0f0f9a15, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.98476964
+      objectReference: {fileID: 0}
+    - target: {fileID: 6023571959288864641, guid: e3ca7bcef641c4e42b6901fe0f0f9a15, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.17386425
+      objectReference: {fileID: 0}
+    - target: {fileID: 6386250663586446278, guid: e3ca7bcef641c4e42b6901fe0f0f9a15, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.98776174
+      objectReference: {fileID: 0}
+    - target: {fileID: 6386250663586446278, guid: e3ca7bcef641c4e42b6901fe0f0f9a15, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.15597047
       objectReference: {fileID: 0}
     - target: {fileID: 7818814314614185600, guid: e3ca7bcef641c4e42b6901fe0f0f9a15, type: 3}
       propertyPath: m_LocalPosition.x

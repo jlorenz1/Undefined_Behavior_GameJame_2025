@@ -6,13 +6,14 @@ public class meleeweaponscript : MonoBehaviour
 {
     IDamage TargetDamage;
 
+  
 
     //tag info
     string CasterTag;
     public GameObject target;
 
     [SerializeField] float Damage;
-
+    [SerializeField] Collider Weaponcollider;
 
     // Start is called before the first frame update
     void Start()
@@ -23,21 +24,20 @@ public class meleeweaponscript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         
     }
 
     void OnTriggerEnter(Collider other)
     {
-
+        Debug.Log("hit");
 
         if (other.isTrigger || other.tag == CasterTag)
         {
+            Debug.Log("hit non target");
             return;
         }
-        else if (other.tag != target.tag)
-        {
-            Destroy(gameObject);
-        }
+       
         else if (other.tag == target.tag)
         {
 
@@ -46,18 +46,19 @@ public class meleeweaponscript : MonoBehaviour
             if (TargetDamage != null)
             {
                 TargetDamage.TakeDamage(Damage);
-
-
-                Destroy(gameObject);
+                
             }
 
-            else
-            {
-                Destroy(gameObject);
-            }
         }
 
 
 
+    }
+
+    public void SetStats(GameObject Target,  string mCasterTag)
+    {
+        target = Target;
+        
+        CasterTag = mCasterTag;
     }
 }
