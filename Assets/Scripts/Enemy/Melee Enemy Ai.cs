@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class MeleeEnemyAi : BasicEnemyAI
 {
+    public GameObject MeleeWeapon;
+    meleeweaponscript Weapon;
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
         CanAttack = true;
+
+        Weapon = MeleeWeapon.GetComponent<meleeweaponscript>();
+        Weapon.SetStats(Target, this.tag);
+
+
     }
 
 
