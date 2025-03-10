@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject player;
-    public float playerHealth = 100.0f;
+    public float playerHealth = 1.0f;
     public PlayerController playerControl;
     public UIManager UI;
 
@@ -26,8 +26,15 @@ public class GameManager : MonoBehaviour
     Transform spawn1;
     Transform spawn2;
 
+   public Transform DreamSpawn1;
+   public Transform DreamSpawn2;
+
     float currentFadeTime = 0.0f;
     float fadeDuration = 1.5f;
+
+
+    PlayerController yamcontorler;
+
 
     bool D1Delay;
     bool endNegative = false;
@@ -87,6 +94,8 @@ public class GameManager : MonoBehaviour
         D1Delay = false;
         isAmyActive = true;
         UI.PlayerHealthBarBack.gameObject.SetActive(false);
+
+        yamcontorler = Yam.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -120,9 +129,26 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(playerHealth >= 0)
+        if(playerHealth <= 0)
         {
             //respawn
+
+
+            yamcontorler.enabled = false;
+
+            if (PickupCount < 5)
+            {
+                Yam.transform.position = DreamSpawn1.transform.position;
+                
+            }
+           else if (PickupCount >= 5)
+            {
+                Yam.transform.position = DreamSpawn2.transform.position;
+            }
+
+            playerHealth = 100;
+            yamcontorler.enabled = true;
+
         }
 
 
