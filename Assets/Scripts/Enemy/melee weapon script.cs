@@ -28,7 +28,7 @@ public class meleeweaponscript : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider other)
+   private void OnTriggerEnter(Collider other)
     {
         Debug.Log("hit");
 
