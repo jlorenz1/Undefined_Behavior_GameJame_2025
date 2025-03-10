@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
 
         if (D1Delay == false)
         {
-            if (PickupCount == pickupCountOne && Door1 != null)
+            if (PickupCount == pickupCountOne && Door1 != null && KillCount == 5)
             {
                 D1Delay = true;
                 Door1.slide();
