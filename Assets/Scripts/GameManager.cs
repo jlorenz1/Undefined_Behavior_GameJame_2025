@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject player;
+    public float playerHealth = 100.0f;
     public PlayerController playerControl;
     public UIManager UI;
 
@@ -14,13 +15,15 @@ public class GameManager : MonoBehaviour
     public bool isAmyActive;
 
     public int KillCount;
+    public int PickupCount;
+    public int pickupCountOne = 5;
 
    public doorScript Door1;
     public doorScript Door2;
 
     bool D1Delay;
-
-
+    bool endNegative = false;
+    bool paused = false;
     // Private static instance to the gameManager
     private static GameManager _gameInstance;
 
@@ -74,7 +77,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G) && !endNegative)
         {
             if(isAmyActive == true)
             {
@@ -100,21 +103,61 @@ public class GameManager : MonoBehaviour
 
         if (D1Delay == false)
         {
-            if (KillCount == 5 && Door1 != null)
+            if (PickupCount == pickupCountOne && Door1 != null)
             {
                 D1Delay = true;
                 Door1.slide();
                 D1Delay = false;
             }
 
+            if(KillCount == 5)
+            {
+                //real door open
+            }
+
 
             if (KillCount == 14 && Door2 != null)
             {
-                D1Delay = true;
-                Door2.slide();
-                D1Delay = false;
+                if(Yam.gameObject.activeSelf == true)
+                {
+                    isAmyActive = true;
+                }
+                endNegative = true;
+                //D1Delay = true;
+                //Door2.slide();
+                //D1Delay = false;
             }
 
+            if (PickupCount == 9)
+            {
+                //end game trigger active 
+            }
+
+            Pause();
+
+        }
+
+        void Pause()
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                paused = !paused;
+
+                if(paused)
+                {
+                    Time.timeScale = 0.0f;
+                    Cursor.lockState = CursorLockMode.Confined;
+                    Cursor.visible = true;
+                }
+                else
+                {
+                    Time.timeScale = 1.0f;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = true;
+                }
+
+            }
+            
         }
     }
 

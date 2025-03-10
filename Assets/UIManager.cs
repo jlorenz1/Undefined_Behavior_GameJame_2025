@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
     
-        PlayerHealthBar.fillAmount = GameManager.gameInstance.playerControl.currHealth / 100.0f;
+        PlayerHealthBar.fillAmount = GameManager.gameInstance.playerHealth / 100.0f;
     }
 
     // Update is called once per frame
@@ -26,6 +26,6 @@ public class UIManager : MonoBehaviour
 
     void UpdatePlayerHealth()
     {
-        PlayerHealthBar.fillAmount = GameManager.gameInstance.playerControl.currHealth / 100.0f;
+        PlayerHealthBar.fillAmount = GameManager.gameInstance.playerHealth / 100.0f;
     }
 }

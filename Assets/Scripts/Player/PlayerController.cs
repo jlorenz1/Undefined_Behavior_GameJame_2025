@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void TakeDamage(float amount)
     {
-        currHealth -= amount;
+        GameManager.gameInstance.playerHealth -= amount;
 
         if(currHealth >= 0)
         {
