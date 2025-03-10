@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     [SerializeField] Transform groundCheck;
     [SerializeField] public LayerMask groundMask;
+    [SerializeField] public LayerMask platformMask;
 
     [SerializeField] float currentSpeed;
     [SerializeField] float walkSpeed = 3.0f;
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     //bools
     bool isGrounded;
+
     bool isAttacking;
 
     // Start is called before the first frame update
@@ -145,4 +147,5 @@ public class PlayerController : MonoBehaviour, IDamage
             //GAME OVER
         }
     }
+
 }
