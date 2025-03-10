@@ -20,10 +20,23 @@ public class GameManager : MonoBehaviour
 
    public doorScript Door1;
     public doorScript Door2;
+    public doorScript Door3;
+    public GameObject gameOver;
+
+    Transform spawn1;
+    Transform spawn2;
+
+    float currentFadeTime = 0.0f;
+    float fadeDuration = 1.5f;
 
     bool D1Delay;
     bool endNegative = false;
     bool paused = false;
+    bool isInScreen = false;
+    bool won = false;
+    public bool creditsActive = false;
+    public bool respawned = false;
+    public bool endGameTriggered = false;
     // Private static instance to the gameManager
     private static GameManager _gameInstance;
 
@@ -64,6 +77,7 @@ public class GameManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        Time.timeScale = 1.0f;
     }
 
 
@@ -72,18 +86,25 @@ public class GameManager : MonoBehaviour
     {
         D1Delay = false;
         isAmyActive = true;
+        UI.PlayerHealthBarBack.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if(endGameTriggered)
+        {
+            Fade();
+        }
+
         if (Input.GetKeyDown(KeyCode.G) && !endNegative)
         {
             if(isAmyActive == true)
             {
                 UI.amyIcon.gameObject.SetActive(true);
                 UI.yamIcon.gameObject.SetActive(false);
-                UI.PlayerHealthBar.gameObject.SetActive(true);
+                UI.PlayerHealthBarBack.gameObject.SetActive(true);
                 isAmyActive = false;
                 Amy.SetActive(false);
                 Yam.SetActive(true);
@@ -92,35 +113,46 @@ public class GameManager : MonoBehaviour
             {
                 UI.yamIcon.gameObject.SetActive(true);
                 UI.amyIcon.gameObject.SetActive(false);
-                UI.PlayerHealthBar.gameObject.SetActive(false);
+                UI.PlayerHealthBarBack.gameObject.SetActive(false);
                 isAmyActive = true;
                 Yam.SetActive(false);
                 Amy.SetActive(true);
             }
         }
 
+        if(playerHealth >= 0)
+        {
+            //respawn
+        }
+
 
 
         if (D1Delay == false)
         {
-            if (PickupCount == pickupCountOne && Door1 != null && KillCount == 5)
+            if (PickupCount == pickupCountOne && Door1 != null && KillCount == 2)
             {
                 D1Delay = true;
                 Door1.slide();
                 D1Delay = false;
             }
 
-            if(KillCount == 5)
+            if(KillCount == 2 && Door3 != null)
             {
                 //real door open
+                Door3.slide();
             }
 
 
-            if (KillCount == 14 && Door2 != null)
+            if (KillCount == 9)
             {
-                if(Yam.gameObject.activeSelf == true)
+                if(isAmyActive == false)
                 {
+                    UI.yamIcon.gameObject.SetActive(true);
+                    UI.amyIcon.gameObject.SetActive(false);
+                    UI.PlayerHealthBar.gameObject.SetActive(false);
                     isAmyActive = true;
+                    Yam.SetActive(false);
+                    Amy.SetActive(true);
                 }
                 endNegative = true;
                 //D1Delay = true;
@@ -128,9 +160,12 @@ public class GameManager : MonoBehaviour
                 //D1Delay = false;
             }
 
-            if (PickupCount == 9)
+            if (PickupCount == 9 && endNegative)
             {
-                //end game trigger active 
+                //end game trigger active
+                gameOver.SetActive(true);
+               
+              
             }
 
             Pause();
@@ -145,12 +180,14 @@ public class GameManager : MonoBehaviour
 
                 if(paused)
                 {
+                    UI.PauseMenu.gameObject.SetActive(true);
                     Time.timeScale = 0.0f;
                     Cursor.lockState = CursorLockMode.Confined;
                     Cursor.visible = true;
                 }
                 else
                 {
+                    UI.PauseMenu.gameObject.SetActive(false);
                     Time.timeScale = 1.0f;
                     Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = true;
@@ -161,7 +198,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
+    public void Fade()
+    {
+        currentFadeTime += Time.deltaTime;
+
+        float alpha = Mathf.Lerp(0f, 1f, currentFadeTime / fadeDuration);
+        UI.FadeScreen.color = new Color(0, 0, 0, alpha);
+
+        if(currentFadeTime >= 0)
+        {
+            isInScreen = true;
+            
+        }
+
+        if (currentFadeTime >= fadeDuration)
+        {
+            UI.gameOver.SetActive(true);
+            Time.timeScale = 0.0f;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+        }
+    }
 
 
 

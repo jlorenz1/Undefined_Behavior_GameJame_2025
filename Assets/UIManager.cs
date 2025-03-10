@@ -6,10 +6,16 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] public Image PlayerHealthBar;
+    [SerializeField] public Image PlayerHealthBarBack;
     [SerializeField] public Image amyIcon;
     [SerializeField] public Image yamIcon;
 
-    private PlayerController player;
+    [SerializeField] public GameObject PauseMenu;
+    [SerializeField] public GameObject CreditsMenu;
+    public GameObject gameOver;
+    [SerializeField] public Image FadeScreen;
+
+   
     
     // Start is called before the first frame update
     void Start()
@@ -28,4 +34,6 @@ public class UIManager : MonoBehaviour
     {
         PlayerHealthBar.fillAmount = GameManager.gameInstance.playerHealth / 100.0f;
     }
+
+ 
 }

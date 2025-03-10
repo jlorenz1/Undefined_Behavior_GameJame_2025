@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour, IDamage
     //bools
     bool isGrounded;
 
-    bool isAttacking;
+    bool isAttacking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -117,16 +117,25 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void Attack()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && !isAttacking)
         {
-            StartCoroutine(performAttack());
+            currentSpeed = 0.0f;
+            //StartCoroutine(performAttack());
+            anim.SetTrigger("Attack");
+        }
+
+        if(!isAttacking)
+        {
+            currentSpeed = 3.0f;
+            anim.SetTrigger("Move");
         }
 
     }
 
     IEnumerator performAttack()
     {
-       weaponCollider.enabled = true;
+        isAttacking = true;
+        weaponCollider.enabled = true;
         currentSpeed = 0.0f;
         anim.SetTrigger("Attack");
 
@@ -136,6 +145,12 @@ public class PlayerController : MonoBehaviour, IDamage
         weaponCollider.enabled = false;
         anim.SetTrigger("Move");
         currentSpeed = 3.0f;
+        isAttacking = false;
+    }
+
+    public void Respawn(Transform t)
+    {
+        transform.position = t.position;
     }
 
     public void TakeDamage(float amount)

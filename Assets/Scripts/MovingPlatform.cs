@@ -26,7 +26,7 @@ public class MovingPlatform : MonoBehaviour
             float moveDirection = moving ? 1 : -1;
             Vector3 targetPos = startPos + new Vector3(0.0f, moveDirection * moveSpeed, 0.0f);
 
-            while(Vector3.Distance(transform.position, targetPos) > 0.01f)
+            while(Vector3.Distance(transform.position, targetPos) > 0.001f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
                 yield return null;
