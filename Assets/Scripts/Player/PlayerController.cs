@@ -7,9 +7,12 @@ public class PlayerController : MonoBehaviour, IDamage
     [Header("PLAYER GAME VARIABLES")]
     [SerializeField] public float maxHealth = 100f;
     [SerializeField] public float currHealth;
+    [SerializeField] public GameObject Weapon;
+    private Collider weaponCollider;
 
     [Header("PLAYER COMPONENTS")]
     [SerializeField] public CharacterController cController;
+  
     [SerializeField] public Transform Cam;
     [SerializeField] public Animator anim;
 
@@ -42,6 +45,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
         currHealth = maxHealth;
         currentSpeed = walkSpeed;
+        weaponCollider = Weapon.GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -50,7 +54,11 @@ public class PlayerController : MonoBehaviour, IDamage
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.2f, groundMask);
         Movement();
         Jump();
-        Attack();
+        if(GameManager.gameInstance.isAmyActive == false)
+        {
+            Attack();
+        }
+       
     }
 
     void Movement()
@@ -116,11 +124,14 @@ public class PlayerController : MonoBehaviour, IDamage
 
     IEnumerator performAttack()
     {
+        weaponCollider.enabled = true;
         currentSpeed = 0.0f;
         anim.SetTrigger("Attack");
 
+        
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
 
+        weaponCollider.enabled = false;
         anim.SetTrigger("Move");
         currentSpeed = 3.0f;
     }
