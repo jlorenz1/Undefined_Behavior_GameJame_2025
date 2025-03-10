@@ -17,7 +17,7 @@ public class RangedEnemyAI : BasicEnemyAI, IDamage
 
     [SerializeField] int castAmount;
 
-    float castDelay = 1;
+
     [SerializeField] float castRange;
    
 
@@ -58,8 +58,8 @@ public class RangedEnemyAI : BasicEnemyAI, IDamage
 
         }
 
-        // EnemyNav.stoppingDistance = AttackRange / 2;
-        EnemyNav.SetDestination(Target.transform.position);
+         EnemyNav.stoppingDistance = AttackRange / 2;
+       
 
 
 

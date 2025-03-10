@@ -1743,9 +1743,10 @@ GameObject:
   - component: {fileID: 716130169}
   - component: {fileID: 5866666021655934059}
   - component: {fileID: 5866666021655934060}
+  - component: {fileID: 5866666021655934061}
   m_Layer: 0
   m_Name: Meele enemy
-  m_TagString: Enemy
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3161,6 +3162,7 @@ MonoBehaviour:
   sight: 25
   AutoDetectRange: 0
   level: 0
+  Spawm: {fileID: 0}
   currentSpeed: 0
   PlayerInSight: 1
   Target: {fileID: 1310579701}
@@ -3188,6 +3190,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!65 &5866666021655934061
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149413213354}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.5, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!4 &5901452235482545299
 Transform:
   m_ObjectHideFlags: 0
@@ -3260,9 +3283,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1198414696476434637, guid: 50137a5f158a94b49b0f7d8d1e865b4d, type: 3}
+      propertyPath: Spawm
+      value: 
+      objectReference: {fileID: 917507033}
+    - target: {fileID: 1198414696476434637, guid: 50137a5f158a94b49b0f7d8d1e865b4d, type: 3}
       propertyPath: Target
       value: 
-      objectReference: {fileID: 1082271958404143089}
+      objectReference: {fileID: 919132149413213354}
     - target: {fileID: 4947792202611747313, guid: 50137a5f158a94b49b0f7d8d1e865b4d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 802.36

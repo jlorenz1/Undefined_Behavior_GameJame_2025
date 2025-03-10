@@ -25,7 +25,7 @@ public class BasicEnemyAI : MonoBehaviour,  IDamage
     [SerializeField] protected int level;
 
 
-
+    public GameObject Spawm;
     public float currentSpeed;
     public bool PlayerInSight;
     float AngleToPlayer;
@@ -57,9 +57,14 @@ public class BasicEnemyAI : MonoBehaviour,  IDamage
     // Update is called once per frame
     public virtual void Update()
     {
-        EnemyNav.SetDestination(Target.transform.position);
-
-        AutoDetect();
+        if (Target != null && this != null)
+        {
+            EnemyNav.SetDestination(Target.transform.position);
+            AutoDetect();
+        }
+        else
+            if (this != null)
+            EnemyNav.ResetPath();
 
         if (CurrentHealth <= 0)
         {
