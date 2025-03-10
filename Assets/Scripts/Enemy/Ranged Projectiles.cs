@@ -130,10 +130,10 @@ public class Projectile : MonoBehaviour
         {
             return;
         }
-        else if(other.tag!= target.tag)
+      /*  else if(other.tag!= target.tag)
         {
             Destroy(gameObject);
-        }
+        }*/
       
      else if(other.tag == target.tag)
         {
