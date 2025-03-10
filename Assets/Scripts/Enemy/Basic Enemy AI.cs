@@ -20,7 +20,7 @@ public class BasicEnemyAI : MonoBehaviour,  IDamage
     [SerializeField] protected int ViewAngle;
     [SerializeField] protected float sight = 25;
     [SerializeField] float AutoDetectRange;
-    [SerializeField] float ActivateDistances = 15;
+    [SerializeField] float ActivateDistances = 35;
 
     [SerializeField] protected int level;
 
@@ -64,8 +64,7 @@ public class BasicEnemyAI : MonoBehaviour,  IDamage
                 EnemyNav.SetDestination(Target.transform.position);
             }
         }
-        else
-            if (this != null && Target == null)
+        else if (this != null && Target == null)
         {
             EnemyNav.ResetPath();
         }

@@ -120,7 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectileAudio: {fileID: 0}
   target: {fileID: 0}
-  Speed: 10
-  Damage: 10
+  Speed: 4
+  Damage: 5
   Slow: 0
-  LifeTime: 5
+  LifeTime: 2
