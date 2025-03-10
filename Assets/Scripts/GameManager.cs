@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
 
         UI = FindAnyObjectByType<UIManager>();
 
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
 
